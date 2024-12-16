@@ -14,9 +14,9 @@ interface SidebarProps {
 }
 
 const channels: Channel[] = [
-  { id: 'home', name: 'welcome', isUnread: true },
+  { id: 'home', name: 'welcome' },
   { id: 'about', name: 'about-me' },
-  { id: 'projects', name: 'projects', isUnread: true },
+  { id: 'projects', name: 'projects' },
   { id: 'contact', name: 'contact-me' },
 ];
 
@@ -26,8 +26,12 @@ const socialLinks = [
   { name: 'Twitter', url: 'https://x.com/IamPratyushhhhh' },
 ];
 
-export function Sidebar({ activeChannel, setActiveChannel, isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
-  // Initialize the profile section to be expanded by default
+export function Sidebar({
+  activeChannel,
+  setActiveChannel,
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+}: SidebarProps) {
   const [isProfileExpanded, setIsProfileExpanded] = useState(true);
 
   return (
@@ -41,17 +45,19 @@ export function Sidebar({ activeChannel, setActiveChannel, isMobileMenuOpen, set
       )}
 
       {/* Sidebar */}
-      <div className={`
-        fixed top-0 left-0 h-full w-64 bg-[#2f3136] z-50 transition-transform duration-300 ease-in-out
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-        md:translate-x-0 border-r border-[#202225]
-      `}>
+      <div
+        className={`
+          fixed top-0 left-0 h-full w-64 bg-[#2f3136] z-50 transition-transform duration-300 ease-in-out
+          ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0 border-r border-[#202225]
+        `}
+      >
         <div className="p-4 border-b border-[#202225]">
           <div className="p-2 rounded-md">
             <h1 className="text-l font-bold text-white">Pratyush's Portfolio</h1>
           </div>
         </div>
-        
+
         <div className="px-2 pt-4 h-[calc(100%-180px)] overflow-y-auto">
           <div className="flex items-center px-2 mb-2">
             <div className="w-1 h-4 bg-[#5865f2] rounded-r mr-2"></div>
@@ -68,30 +74,26 @@ export function Sidebar({ activeChannel, setActiveChannel, isMobileMenuOpen, set
                   setIsMobileMenuOpen(false);
                 }}
                 className={`
-                  w-full flex items-center px-2 py-1.5 rounded transition-all duration-200 relative
-                  ${activeChannel === channel.id 
-                    ? 'bg-[#393c43] text-white' 
+                  w-full flex items-center px-2 py-1.5 rounded transition-all duration-200
+                  ${activeChannel === channel.id
+                    ? 'bg-[#393c43] text-white'
                     : 'text-[#96989d] hover:bg-[#393c43] hover:text-gray-100'}
-                  group
                 `}
               >
                 <span className="text-lg mr-2">#</span>
                 <span className="font-medium text-sm">{channel.name}</span>
-                {channel.isUnread && activeChannel !== channel.id && (
-                  <span className="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-1 h-2 bg-white rounded-full"></span>
-                )}
               </button>
             ))}
           </nav>
         </div>
-        
-        <div 
+
+        <div
           className={`
             absolute bottom-0 left-0 right-0 bg-[#292b2f] transition-all duration-300
             ${isProfileExpanded ? 'h-[200px]' : 'h-[68px]'}
           `}
         >
-          <button 
+          <button
             onClick={() => setIsProfileExpanded(!isProfileExpanded)}
             className="w-full p-4 hover:bg-[#202225] transition-colors duration-200"
           >
@@ -105,11 +107,13 @@ export function Sidebar({ activeChannel, setActiveChannel, isMobileMenuOpen, set
               </div>
             </div>
           </button>
-          
-          <div className={`
-            px-4 pb-4 space-y-2 transition-all duration-300
-            ${isProfileExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}
-          `}>
+
+          <div
+            className={`
+              px-4 pb-4 space-y-2 transition-all duration-300
+              ${isProfileExpanded ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+            `}
+          >
             {socialLinks.map((link) => (
               <a
                 key={link.name}
