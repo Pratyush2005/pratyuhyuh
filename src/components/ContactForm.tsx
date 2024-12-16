@@ -11,14 +11,14 @@ export function ContactForm() {
     e.preventDefault();
 
     emailjs.send(
-      'service_un4j068',          // Replace with your EmailJS Service ID
-      'template_5sn7loa',         // Replace with your EmailJS Template ID
+      'service_un4j068',        
+      'template_5sn7loa',       
       {
         username,
         email,
         message,
       },
-      'YzGnMSU6oL-RUe8hj'              // Replace with your EmailJS User ID
+      'YzGnMSU6oL-RUe8hj'            
     )
     .then(() => {
       setStatus('Message sent successfully!');
