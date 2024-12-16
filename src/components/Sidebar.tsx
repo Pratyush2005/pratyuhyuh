@@ -5,7 +5,6 @@ interface Channel {
   name: string;
   isUnread?: boolean;
 }
-
 interface SidebarProps {
   activeChannel: string;
   setActiveChannel: (id: string) => void;
