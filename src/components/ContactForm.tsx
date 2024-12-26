@@ -7,29 +7,28 @@ export function ContactForm() {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
 
-    emailjs
-      .send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID as string,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID as string,
-        {
-          username,
-          email,
-          message,
-        },
-        process.env.REACT_APP_EMAILJS_USER_ID as string
-      )
-      .then(() => {
-        setStatus('Message sent successfully!');
-        setUsername('');
-        setEmail('');
-        setMessage('');
-      })
-      .catch(() => {
-        setStatus('Failed to send message.');
-      });
+    emailjs.send(
+      'service_un4j068',        
+      'template_5sn7loa',       
+      {
+        username,
+        email,
+        message,
+      },
+      'YzGnMSU6oL-RUe8hj'            
+    )
+    .then(() => {
+      setStatus('Message sent successfully!');
+      setUsername('');
+      setEmail('');
+      setMessage('');
+    })
+    .catch(() => {
+      setStatus('Failed to send message.');
+    });
   };
 
   return (
@@ -42,8 +41,8 @@ export function ContactForm() {
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label className="block text-[#b9bbbe] text-sm">Username</label>
-            <input
-              type="text"
+            <input 
+              type="text" 
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full px-4 py-2 bg-[#202225] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5865f2] transition-all duration-200"
@@ -53,8 +52,8 @@ export function ContactForm() {
           </div>
           <div className="space-y-2">
             <label className="block text-[#b9bbbe] text-sm">Email</label>
-            <input
-              type="email"
+            <input 
+              type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 bg-[#202225] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5865f2] transition-all duration-200"
@@ -64,7 +63,7 @@ export function ContactForm() {
           </div>
           <div className="space-y-2">
             <label className="block text-[#b9bbbe] text-sm">Message</label>
-            <textarea
+            <textarea 
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="w-full px-4 py-2 bg-[#202225] text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#5865f2] transition-all duration-200 resize-none"
@@ -73,10 +72,7 @@ export function ContactForm() {
               required
             ></textarea>
           </div>
-          <button
-            type="submit"
-            className="w-full px-6 py-2 bg-[#5865f2] text-white rounded-md hover:bg-[#4752c4] transition-colors duration-200 transform hover:translate-y-[-2px] font-medium"
-          >
+          <button type="submit" className="w-full px-6 py-2 bg-[#5865f2] text-white rounded-md hover:bg-[#4752c4] transition-colors duration-200 transform hover:translate-y-[-2px] font-medium">
             Send Message
           </button>
           {status && <p className="text-[#b9bbbe] mt-2">{status}</p>}
